@@ -1,7 +1,8 @@
-package com.lemon.green.campaignsdk
+package com.advisor.campaign
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.advisor.campaign.campaignsdk.R
 
 class MainActivity : AppCompatActivity() {
 

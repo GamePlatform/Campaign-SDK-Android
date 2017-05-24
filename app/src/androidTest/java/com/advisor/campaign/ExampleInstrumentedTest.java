@@ -1,4 +1,4 @@
-package com.lemon.green.campaignsdk;
+package com.advisor.campaign;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

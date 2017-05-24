@@ -1,4 +1,4 @@
-package com.lemon.green.campaignsdk;
+package com.advisor.campaign;
 
 import org.junit.Test;
 
