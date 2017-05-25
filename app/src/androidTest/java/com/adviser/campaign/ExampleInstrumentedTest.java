@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.lemon.green.campaignsdk", appContext.getPackageName());
+        assertEquals("com.advisor.campaign", appContext.getPackageName());
     }
 }
