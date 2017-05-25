@@ -1,7 +1,6 @@
-package com.advisor.campaign
+package com.adviser.campaign
 
 import org.junit.Assert
-import org.junit.Assert.assertEquals
 import org.testng.annotations.Test
 
 

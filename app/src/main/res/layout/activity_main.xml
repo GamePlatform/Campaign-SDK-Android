@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.advisor.campaign.campaignsdk.com.advisor.campaign.MainActivity">
+    tools:context="com.adviser.campaign.campaignsdk.com.advisor.campaign.MainActivity">
 
     <WebView
         android:id="@+id/popup"

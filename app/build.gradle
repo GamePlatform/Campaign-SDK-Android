@@ -6,7 +6,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.lemon.green.campaignsdk"
+        applicationId "com.adviser.campaign"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
