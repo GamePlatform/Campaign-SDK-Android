@@ -5,7 +5,7 @@ body{
 #wrapper {
     position: absolute;
     background-color: gray;
-    width: 98%;
+    width: 100%;
 }
 
 #content {
