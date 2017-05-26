@@ -1,0 +1,23 @@
+body{
+    margin: 0
+}
+
+#wrapper {
+    position: absolute;
+    background-color: gray;
+    width: 98%;
+}
+
+#content {
+    float: left
+    background-color: red;
+}
+
+#content img{
+        width: 100%
+}
+
+#checker {
+    float: right
+    background-color: blue;
+}
