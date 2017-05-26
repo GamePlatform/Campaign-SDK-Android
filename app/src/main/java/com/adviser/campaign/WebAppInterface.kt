@@ -38,12 +38,12 @@ class WebAppInterface {
     @JavascriptInterface
     fun getImageUrl(): String? {
         print(urls!![cur])
+        // TODO add Exception process
         return urls!![cur++]
     }
 
-
     @JavascriptInterface
     fun noMoreToSee() {
-
+        //TODO
     }
 }
