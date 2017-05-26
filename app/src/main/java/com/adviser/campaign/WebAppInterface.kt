@@ -10,21 +10,19 @@ import org.json.JSONObject
 
 class WebAppInterface {
 
-    val req: String
+    val req: String?
     var urls: Array<String>? = null
     var cur = -1
 
-    constructor(req: String) {
+    constructor(req: String?) {
         this.req = req
         reqParser()
     }
 
     fun reqParser() {
-        var urls: Array<String>?
+        val urls: Array<String>?
 
-        var json: JSONObject = JSONObject(req)
-        print(req)
-        var images: JSONArray = json.getJSONArray("images")
+        val images: JSONArray = JSONObject(req).getJSONArray("images")
         urls = Array(images.length(), { _ -> "" })
 
         for (i in 0..images.length() - 1) {
