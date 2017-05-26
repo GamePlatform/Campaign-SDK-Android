@@ -1,17 +1,12 @@
 package com.adviser.campaign
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.webkit.WebView
-import com.adviser.campaign.campaignsdk.R.id.popup
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.BufferedInputStream
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-import java.nio.Buffer
 
 /**
  * Created by Kairos on 2017. 5. 25..
@@ -19,14 +14,12 @@ import java.nio.Buffer
 
 class CampaignAdviser{
 
-    fun loadCampaign(popup : WebView){
+    fun loadCampaign(popup: WebView, locationId: Int) {
 
         // enable javascript in webview
         popup.settings.javaScriptEnabled = true
-
+        popup.addJavascriptInterface(WebAppInterface(RequestTemp.reqToServer()!!), "android")
         popup.loadUrl("file:///android_asset/popup.html")
-
-
 
     }
 
@@ -35,6 +28,7 @@ class CampaignAdviser{
     private fun GET(url : String?) : String?{
         var result : StringBuilder = StringBuilder()
 
+        // Null String check
         if (!url.isNullOrEmpty()){
             var url : URL = URL(url)
             var con : HttpURLConnection = url.openConnection() as HttpURLConnection
@@ -43,6 +37,7 @@ class CampaignAdviser{
                 var input: InputStream = BufferedInputStream(con.inputStream)
                 var reader: BufferedReader = BufferedReader(InputStreamReader(input))
 
+                // read http request line
                 var line: String = reader.readLine()
                 while (line != null) {
                     result.append(line)
