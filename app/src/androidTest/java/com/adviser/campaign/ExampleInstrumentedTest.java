@@ -1,4 +1,4 @@
-package com.advisor.campaign;
+package com.adviser.campaign;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.lemon.green.campaignsdk", appContext.getPackageName());
+        assertEquals("com.adviser.campaign", appContext.getPackageName());
     }
 }
