@@ -18,7 +18,6 @@ class HttpRequestAgent {
 
     constructor(locationId : Int) {
         this.locationId = locationId
-        reqParser()
     }
 
     fun reqParser() {
