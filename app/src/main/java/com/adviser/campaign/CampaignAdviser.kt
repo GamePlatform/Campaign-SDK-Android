@@ -25,9 +25,9 @@ class CampaignAdviser{
         // popup(webview) setting
         val popup = WebView(context)
         popup.settings.javaScriptEnabled = true
-        val agent: HttpRequestAgent = HttpRequestAgent(1)
+        val agent: HttpRequestAgent = HttpRequestAgent(locationId)
         agent.reqParser()
-        popup.addJavascriptInterface(agent, "campaign")
+        popup.addJavascriptInterface(WebAppInterface(agent), "campaign")
         popup.loadUrl("file:///android_asset/popup.html")
 
         // dialog setting
@@ -36,5 +36,4 @@ class CampaignAdviser{
         dialog.show()
 
     }
-
 }
