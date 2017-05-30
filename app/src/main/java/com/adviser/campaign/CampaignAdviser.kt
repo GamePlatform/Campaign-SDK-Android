@@ -1,5 +1,7 @@
 package com.adviser.campaign
 
+import android.app.AlertDialog
+import android.content.Context
 import android.webkit.WebView
 
 /**
@@ -16,6 +18,22 @@ class CampaignAdviser{
         agent.reqParser()
         popup.addJavascriptInterface(agent, "campaign")
         popup.loadUrl("file:///android_asset/popup.html")
+    }
+
+    fun loadDynamicCampaign(context: Context, locationId: Int) {
+
+        // popup(webview) setting
+        val popup = WebView(context)
+        popup.settings.javaScriptEnabled = true
+        val agent: HttpRequestAgent = HttpRequestAgent(1)
+        agent.reqParser()
+        popup.addJavascriptInterface(agent, "campaign")
+        popup.loadUrl("file:///android_asset/popup.html")
+
+        // dialog setting
+        val dialog = AlertDialog.Builder(context)
+        dialog.setView(popup)
+        dialog.show()
 
     }
 

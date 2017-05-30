@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         var ca : CampaignAdviser = CampaignAdviser()
         ca.loadCampaign(popup, 1)
+        ca.loadDynamicCampaign(this, 1)
 
     }
 }
