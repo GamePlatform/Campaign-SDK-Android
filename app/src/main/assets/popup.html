@@ -8,11 +8,13 @@
 </head>
 <body>
 <div id=wrapper>
+    <button type="button" onclick="window.campaign.close();">닫기</button>
     <div id=content>
         <img id=img_view>
     </div>
     <div id=checker>
         <input type="checkbox" id="no_more_to_see"> 오늘 하루 보지 않기
+        <button type="button" onclick="window.campaign.noMoreToSee(document.getElementById('no_more_to_see').checked);">확인</button>
     </div>
 </div>
 </body>
