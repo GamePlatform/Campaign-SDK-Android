@@ -1,5 +1,8 @@
 package com.adviser.campaign
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.util.Log
 import android.webkit.JavascriptInterface
 
 /**
@@ -9,9 +12,11 @@ import android.webkit.JavascriptInterface
 class WebAppInterface {
 
     var agent : HttpRequestAgent
+    var dialog : AlertDialog.Builder
 
-    constructor(HttpRequestAgent: HttpRequestAgent) {
+    constructor(HttpRequestAgent: HttpRequestAgent, dialog: AlertDialog.Builder) {
         this.agent = HttpRequestAgent
+        this.dialog = dialog
     }
 
     @JavascriptInterface
@@ -22,7 +27,18 @@ class WebAppInterface {
     }
 
     @JavascriptInterface
-    fun noMoreToSee() {
+    fun noMoreToSee(no_more_to_see : Boolean) {
+        //TODO
+        Log.d("WebAppInterface","no_more_to_see: " + no_more_to_see)
+//        print("mhg no_more_to_see"+no_more_to_see)
+    }
+
+    @JavascriptInterface
+    fun close() {
         //TODO
     }
+}
+
+class MyService {
+
 }
