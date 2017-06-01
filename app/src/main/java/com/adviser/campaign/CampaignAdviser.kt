@@ -1,7 +1,6 @@
 package com.adviser.campaign
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.webkit.WebView
@@ -23,23 +22,20 @@ class CampaignAdviser{
 //    }
 
     fun loadDynamicCampaign(context: Context, locationId: Int) {
+        // dialog setting
+//        var builder = AlertDialog.Builder(context)
+//        builder.setNegativeButton("닫기", DialogInterface.OnClickListener { dialogInterface, i ->  }).show()
+        val alert = AlertDialog.Builder(context).create()
 
         // popup(webview) setting
         val popup = WebView(context)
-        popup.settings.javaScriptEnabled = true
         val agent: HttpRequestAgent = HttpRequestAgent(locationId)
         agent.reqParser()
-
-        val dialog = AlertDialog.Builder(context)
-
-        popup.addJavascriptInterface(WebAppInterface(agent, dialog), "campaign")
+        popup.settings.javaScriptEnabled = true
+        popup.addJavascriptInterface(WebAppInterface(agent, alert), "campaign")
         popup.loadUrl("file:///android_asset/popup.html")
 
-        // dialog setting
-//        val dialog = AlertDialog.Builder(context)
-        dialog.setView(popup)
-        dialog.setNegativeButton("닫기", DialogInterface.OnClickListener { dialogInterface, i ->  }).show()
-//        dialog.show()
-
+        alert.setView(popup)
+        alert.show()
     }
 }
