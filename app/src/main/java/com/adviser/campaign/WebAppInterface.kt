@@ -10,19 +10,20 @@ import android.webkit.JavascriptInterface
 
 class WebAppInterface {
 
-    var agent : HttpRequestAgent
+    var campaignsInfo: CampaignsInfo
     var dialog : AlertDialog
 
-    constructor(HttpRequestAgent: HttpRequestAgent, dialog: AlertDialog) {
-        this.agent = HttpRequestAgent
+    constructor(campaignsInfo: CampaignsInfo, dialog: AlertDialog) {
+        this.campaignsInfo = campaignsInfo
         this.dialog = dialog
     }
 
     @JavascriptInterface
-    fun getImageUrl(): String? {
-        print(agent.urls!![agent.cur])
+    fun getURL(): String? {
+        val url = campaignsInfo.getNextURL()
+        Log.d("WebAppInterface","getURL URL:" + url)
         // TODO add Exception process
-        return agent.urls!![agent.cur++]
+        return url
     }
 
     @JavascriptInterface

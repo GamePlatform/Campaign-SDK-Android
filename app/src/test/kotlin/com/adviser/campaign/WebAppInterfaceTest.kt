@@ -19,7 +19,7 @@ class WebAppInterfaceTest {
 
     @Test
     fun testGetImageUrl() {
-        assertEquals(wai!!.getImageUrl(), "http://wallpaper-gallery.net/images/image/image-13.jpg")
+        assertEquals(wai!!.getURL(), "http://wallpaper-gallery.net/images/image/image-13.jpg")
     }
 
 }
