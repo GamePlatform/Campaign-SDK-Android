@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.webkit.WebView
 import com.adviser.campaign.campaignsdk.R
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,8 +17,8 @@ class MainActivity : AppCompatActivity() {
             WebView.setWebContentsDebuggingEnabled(true)
         }
 
-        var ca : CampaignAdviser = CampaignAdviser()
-        ca.loadCampaign(this, 1)
-        ca.showCampaignOneByOne()
+        var ca: CampaignAdviser = CampaignAdviser(this)
+        ca.loadCampaign(1)
+        ca.showCampaignAllInOnce()
     }
 }

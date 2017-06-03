@@ -20,27 +20,27 @@ class HttpRequestAgent {
         this.locationId = locationId
     }
 
-    fun reqParser(): CampaignsInfo {
-        val urls: Array<String>?
+    fun reqParser(): CampaignList {
+        val campaigns: CampaignList = CampaignList()
 
         val images: JSONArray = JSONObject(GET(reqRootUrl + locationId)).getJSONArray("images")
-        urls = Array(images.length(), { _ -> "" })
 
         for (i in 0..images.length() - 1) {
-            urls[i] = (images[i] as JSONObject).getString("url")
+            val id = i
+            val url = (images[i] as JSONObject).getString("url")
+            val ci = CampaignInfo(id, url)
+            Log.v("clog/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
+            campaigns.add(ci)
         }
 
-        Log.d("HttpRequestAgent", "reqParser/loadURLs Complete")
-        for(url in urls) {
-            Log.v("HttpRequestAgent", "reqParser/loadUrls Image URL: " + url)
-        }
-        return CampaignsInfo(urls)
+        Log.d("clog/HttpRequestAgent", "reqParser/loadURLs Complete")
+        return campaigns
     }
 
     // HTTP GET request using URL string
     // return request body
     private fun GET(url : String?) : String?{
-        Log.d("HttpRequestAgent", "GET/Request Url Start URL: " + url)
+        Log.d("clog/HttpRequestAgent", "GET/Request Url Start URL: " + url)
         var result: String = ""
 
         // Null String check
@@ -57,7 +57,7 @@ class HttpRequestAgent {
                 }
             }).join()
         }
-        Log.d("HttpRequestAgent", "GET/Request URL Done URL: " + url)
+        Log.d("clog/HttpRequestAgent", "GET/Request URL Done URL: " + url)
         return result.toString()
     }
 }
