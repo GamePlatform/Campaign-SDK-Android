@@ -11,10 +11,28 @@ import android.webkit.WebView
 // Campaign Adviser
 class CampaignAdviser{
 
-    var alertList = mutableListOf<AlertDialog?>()
+    var context: Context? = null
+    var campaigns: CampaignList? = null
+
+    constructor(context: Context) {
+        this.context = context
+    }
 
     fun showCampaignAllInOnce() {
-        //TODO
+        // dialog setting
+        for (i in 0..campaigns!!.getMax() - 1) {
+            val alert = AlertDialog.Builder(context).create()
+
+            // popup(webview) setting
+            val popup = WebView(context)
+            popup.settings.javaScriptEnabled = true
+            popup.addJavascriptInterface(WebAppInterface(campaigns!!, alert), "campaign")
+            popup.loadUrl("file:///android_asset/popup.html")
+
+            alert.setView(popup)
+            alert.setCancelable(false)
+            alert.show()
+        }
     }
 
     fun showCampaignOneByOne() {
@@ -22,29 +40,10 @@ class CampaignAdviser{
     }
 
     // Load all Campaign in locationId
-    fun loadCampaign(context: Context, locationId: Int) {
+    fun loadCampaign(locationId: Int) {
         val agent: HttpRequestAgent = HttpRequestAgent(locationId)
-        val ci = agent.reqParser()
-
-//        while (!ci.isDone()) {
-//            alertList.add(makeSingleCampaignDialog(context, ci))
-//        }
-        makeSingleCampaignDialog(context, ci)!!.show()
+        val campaigns = agent.reqParser()
+        this.campaigns = campaigns
     }
 
-    // campaign make dialog
-    fun makeSingleCampaignDialog(context: Context, campaignsInfo: CampaignsInfo): AlertDialog? {
-        // dialog setting
-        val alert = AlertDialog.Builder(context).create()
-
-        // popup(webview) setting
-        val popup = WebView(context)
-        popup.settings.javaScriptEnabled = true
-        popup.addJavascriptInterface(WebAppInterface(campaignsInfo, alert), "campaign")
-        popup.loadUrl("file:///android_asset/popup.html")
-
-        alert.setView(popup)
-        //alert.show()
-        return alert
-    }
 }
