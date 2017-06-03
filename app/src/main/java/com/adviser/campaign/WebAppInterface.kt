@@ -10,30 +10,31 @@ import android.webkit.JavascriptInterface
 
 class WebAppInterface {
 
-    var agent : HttpRequestAgent
+    var campaigns: CampaignList
     var dialog : AlertDialog
 
-    constructor(HttpRequestAgent: HttpRequestAgent, dialog: AlertDialog) {
-        this.agent = HttpRequestAgent
+    constructor(campaigns: CampaignList, dialog: AlertDialog) {
+        this.campaigns = campaigns
         this.dialog = dialog
     }
 
     @JavascriptInterface
-    fun getImageUrl(): String? {
-        print(agent.urls!![agent.cur])
-        // TODO add Exception process
-        return agent.urls!![agent.cur++]
+    fun getURL(): String? {
+        val url = campaigns.getNext()!!.url
+        Log.d("clog/WebAppInterface", "getURL URL:" + url)
+        return url
     }
 
     @JavascriptInterface
     fun noMoreToSee(no_more_to_see : Boolean) {
         //TODO
-        Log.d("WebAppInterface","no_more_to_see: " + no_more_to_see)
+        Log.d("clog/WebAppInterface", "no_more_to_see: " + no_more_to_see)
         dialog.dismiss()
     }
 
     @JavascriptInterface
     fun close() {
+        Log.d("clog/WebAppInterface", "close")
         dialog.dismiss()
     }
 }
