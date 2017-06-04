@@ -16,6 +16,7 @@ class WebAppInterface {
     constructor(campaigns: CampaignList, dialog: AlertDialog) {
         this.campaigns = campaigns
         this.dialog = dialog
+        //test
     }
 
     @JavascriptInterface
