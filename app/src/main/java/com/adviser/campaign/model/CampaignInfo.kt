@@ -1,4 +1,4 @@
-package com.adviser.campaign
+package com.adviser.campaign.model
 
 /**
  * Created by Kairos on 2017. 6. 1..
