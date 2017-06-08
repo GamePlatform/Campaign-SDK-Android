@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.webkit.WebView
 import com.adviser.campaign.campaignsdk.R
+import com.adviser.campaign.view.main.CampaignAdviser
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         var ca: CampaignAdviser = CampaignAdviser(this)
-        ca.loadCampaign(1)
-        ca.showCampaignAllInOnce()
+//        ca.loadCampaign(1)
+//        ca.showCampaignAllInOnce()
+        ca.showSingleDialog()
     }
 }

@@ -1,4 +1,4 @@
-package com.adviser.campaign
+package com.adviser.campaign.model
 
 import android.util.Log
 
