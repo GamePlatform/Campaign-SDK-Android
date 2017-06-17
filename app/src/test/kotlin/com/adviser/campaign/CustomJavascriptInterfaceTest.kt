@@ -11,16 +11,16 @@ import org.testng.annotations.Test
  */
 class CustomJavascriptInterfaceTest {
 
-    var wai: CustomJavascriptInterface? = null
+  var wai: CustomJavascriptInterface? = null
 
-    @BeforeTest
-    fun setUp() {
-        val agent = HttpRequestAgent(1)
-    }
+  @BeforeTest
+  fun setUp() {
+    val agent = HttpRequestAgent(1)
+  }
 
-    @Test
-    fun testGetImageUrl() {
-        assertEquals(wai!!.getURL(), "http://wallpaper-gallery.net/images/image/image-13.jpg")
-    }
+  @Test
+  fun testGetImageUrl() {
+    assertEquals(wai!!.getURL(), "http://wallpaper-gallery.net/images/image/image-13.jpg")
+  }
 
 }

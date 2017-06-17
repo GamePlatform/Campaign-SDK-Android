@@ -3,44 +3,58 @@ package com.adviser.campaign.view.main
 import android.app.AlertDialog
 import android.app.Dialog
 import android.app.DialogFragment
-import android.content.Context
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
-import com.adviser.campaign.view.main.presenter.CampaignContract
+import android.util.Log
+import com.adviser.campaign.constant.CampaignConst
 import com.adviser.campaign.webkit.CampaignWebView
+import com.adviser.campaign.webkit.CustomJavascriptInterface
 
 /**
  * Created by Kairos on 2017. 6. 8..
  */
-class CampaignDialogFragment : DialogFragment(), CampaignContract.View {
+class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
+  private var presenter: CampaignDialogContract.Presenter? = null
 
-    private var presenter : CampaignContract.Presenter? = null
+  override fun setPresenter(presenter: CampaignDialogContract.Presenter) {
+    Log.d("clog/CampaignDialogFragment", "setPresenter: $presenter")
+    this.presenter = presenter
+  }
 
-    override fun onPresenter(presenter: CampaignContract.Presenter?) {
-        this.presenter = presenter
-    }
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    Log.d("clog/CampaignDialogFragment", "onCreateDialog Start")
+    val url: String = presenter!!.getCampaignImageURL() //TODO PRIMARY
+    Log.d("clog/CampaignDialogFragment", "imageURL: $url")
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val url: String = arguments.getString("url")
+    val jsInterface = CustomJavascriptInterface()
+    jsInterface.setOnCustomJavascriptListener(presenter!!.getCustomJavascriptListener())
 
-        val cwv = CampaignWebView(activity).init().setUrl(url)
+    val cwv = CampaignWebView(activity).init().setUrl(CampaignConst.POPUP_HTML_URL)
+    cwv.addJavascriptInterface(jsInterface, "campaign")
+    cwv.loadUrl("javascript:Document.findElementById(\"img_view\").src = $url")
 
-        return AlertDialog.Builder(activity)
-                .setView(cwv)
-                .setCancelable(false)
-                .create()
-    }
+    val builder = AlertDialog.Builder(activity)
+        .setView(cwv)
+        .setCancelable(false)
 
-    override fun checkDontWatchDay() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    Log.d("clog/CampaignDialogFragment", "onCreateDialog Complete")
+    return builder.create()
+  }
 
-    override fun close() {
-        this.dismiss()
-    }
+  fun showDialog() {
+    val id = presenter!!.getCampaignId()
+    Log.d("clog/CampaignDialogFragment", "showDialog: $id")
+    this.show(fragmentManager, id)
+  }
 
-    fun showDialog(tag: String) {
-        this.show(fragmentManager, tag)
-    }
+  override fun setImageURL(imageURL: String) {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun checkDontWatchDay() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun close() {
+    this.dismiss()
+  }
 }

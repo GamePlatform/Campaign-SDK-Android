@@ -10,11 +10,11 @@ import org.testng.annotations.Test
 
 class CampaignInfoTest {
 
-    @Test
-    fun getNextURLTest(){
-        val ci = CampaignInfo(arrayOf("test1", "test2"))
-        assertEquals(ci.getNextURL(), "test1")
-        assertEquals(ci.getNextURL(), "test2")
-    }
+  @Test
+  fun getNextURLTest() {
+    val ci = CampaignInfo(arrayOf("test1", "test2"))
+    assertEquals(ci.getNextURL(), "test1")
+    assertEquals(ci.getNextURL(), "test2")
+  }
 
 }
