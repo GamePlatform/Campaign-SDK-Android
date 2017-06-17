@@ -1,26 +1,25 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width; user-scalable=0;" />
+    <meta name="viewport" content="width=device-width; user-scalable=0;"/>
 
     <link rel="stylesheet" type="text/css" href="main.css"/>
 
 </head>
 <body>
 <div id=wrapper>
-    <button type="button" onclick="window.campaign.close();">닫기</button>
+    <button type="button" onclick="campaign.close();">닫기</button>
     <div id=content>
-        <img id=img_view>
+        <img id=img_view src="">
     </div>
     <div id=checker>
-        <input type="checkbox" id="no_more_to_see"> 오늘 하루 보지 않기
-        <button type="button" onclick="window.campaign.noMoreToSee(document.getElementById('no_more_to_see').checked);">확인</button>
+        <input type="checkbox" id="checkDontWatchDay" onchange="campaign.checkDontWatchDay();"> 오늘 하루 보지 않기
     </div>
 </div>
 </body>
 
 <script>
-    var url = campaign.getURL()
+    var url = campaign.getImageURL()
     var div = document.getElementById("content")
     document.getElementById("img_view").src = url
 </script>

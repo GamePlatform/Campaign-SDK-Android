@@ -9,15 +9,19 @@ body{
 }
 
 #content {
-    float: left
+    float: left;
     background-color: red;
 }
 
 #content img{
-        width: 100%
+        width: 100%;
 }
 
 #checker {
-    float: right
-    background-color: blue;
+    float: left;
+    background-color: pink;
+}
+
+#img_view {
+    width: 50%;
 }
