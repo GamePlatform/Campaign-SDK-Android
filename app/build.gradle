@@ -7,7 +7,7 @@ android {
     buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.adviser.campaign"
-        minSdkVersion 17
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -33,7 +33,8 @@ android {
 // test setting
 afterEvaluate {
     android.sourceSets.all { sourceSet ->
-        if (!sourceSet.name.startsWith("test")) {
+        if (!sourceSet.name.startsWith("test"))
+        {
             sourceSet.kotlin.setSrcDirs([])
         }
     }
