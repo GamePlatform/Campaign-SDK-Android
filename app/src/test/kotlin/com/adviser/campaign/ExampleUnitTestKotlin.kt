@@ -9,13 +9,13 @@ import org.testng.annotations.Test
  */
 
 class ExampleUnitTestKotlin {
-    private val ALLOWED_DELTA = 0.01f
+  private val ALLOWED_DELTA = 0.01f
 
 
-    @Test
-    fun exampleTest() {
-        fun firstTest() {
-            Assert.assertTrue(1 == 1)
-        }
+  @Test
+  fun exampleTest() {
+    fun firstTest() {
+      Assert.assertTrue(1 == 1)
     }
+  }
 }
