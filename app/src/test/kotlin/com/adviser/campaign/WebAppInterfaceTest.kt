@@ -1,7 +1,5 @@
 package com.adviser.campaign
 
-import com.adviser.campaign.model.HttpRequestAgent
-import com.adviser.campaign.webkit.CustomJavascriptInterface
 import org.junit.Assert.assertEquals
 import org.testng.annotations.BeforeTest
 import org.testng.annotations.Test
@@ -9,18 +7,19 @@ import org.testng.annotations.Test
 /**
  * Created by Kairos on 2017. 5. 27..
  */
-class CustomJavascriptInterfaceTest {
+class WebAppInterfaceTest {
 
-    var wai: CustomJavascriptInterface? = null
+    var wai: WebAppInterface? = null
 
     @BeforeTest
     fun setUp() {
         val agent = HttpRequestAgent(1)
+        wai = WebAppInterface(agent)
     }
 
     @Test
     fun testGetImageUrl() {
-        assertEquals(wai!!.getURL(), "http://wallpaper-gallery.net/images/image/image-13.jpg")
+        assertEquals(wai!!.getImageUrl(), "http://wallpaper-gallery.net/images/image/image-13.jpg")
     }
 
 }
