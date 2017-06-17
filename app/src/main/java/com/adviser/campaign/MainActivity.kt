@@ -5,25 +5,21 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.webkit.WebView
 import com.adviser.campaign.campaignsdk.R
-import com.adviser.campaign.view.main.CampaignActivity
-import com.adviser.campaign.view.main.CampaignAdviser
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-    // Debugger Enable
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      WebView.setWebContentsDebuggingEnabled(true)
+        // Debugger Enable
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true)
+        }
+
+        var ca : CampaignAdviser = CampaignAdviser()
+        ca.loadCampaign(popup, 1)
+
     }
-
-    //var ca: CampaignAdviser = CampaignAdviser()
-//        ca.loadCampaign(1)
-//        ca.showCampaignAllInOnce()
-    //ca.showCampaign(1)
-
-    CampaignActivity.startActivity(this, "1")
-  }
 }
