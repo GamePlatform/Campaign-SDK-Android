@@ -1,6 +1,5 @@
-package com.adviser.campaign.model
+package com.adviser.campaign
 
-import android.util.Log
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
@@ -10,37 +9,35 @@ import kotlin.concurrent.thread
 /**
  * Created by Kairos on 2017. 5. 26..
  */
-// TODO Change Singletone and Static
 class HttpRequestAgent {
 
     val reqRootUrl = "http://211.253.28.194:30022/api/campaign/locations/"  //TODO load from config file
     val locationId : Int
+    var urls: Array<String>? = null
+    var cur: Int = -1
 
     constructor(locationId : Int) {
         this.locationId = locationId
+        reqParser()
     }
 
-    fun reqParser(): CampaignList {
-        val campaigns: CampaignList = CampaignList()
+    fun reqParser() {
+        val urls: Array<String>?
 
         val images: JSONArray = JSONObject(GET(reqRootUrl + locationId)).getJSONArray("images")
+        urls = Array(images.length(), { _ -> "" })
 
         for (i in 0..images.length() - 1) {
-            val id = i
-            val url = (images[i] as JSONObject).getString("url")
-            val ci = CampaignInfo(id, url)
-            Log.v("clog/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
-            campaigns.add(ci)
+            urls[i] = (images[i] as JSONObject).getString("url")
         }
 
-        Log.d("clog/HttpRequestAgent", "reqParser/loadURLs Complete")
-        return campaigns
+        this.urls = urls
+        cur = 0
     }
 
     // HTTP GET request using URL string
     // return request body
     private fun GET(url : String?) : String?{
-        Log.d("clog/HttpRequestAgent", "GET/Request Url Start URL: " + url)
         var result: String = ""
 
         // Null String check
@@ -57,7 +54,6 @@ class HttpRequestAgent {
                 }
             }).join()
         }
-        Log.d("clog/HttpRequestAgent", "GET/Request URL Done URL: " + url)
         return result.toString()
     }
 }
