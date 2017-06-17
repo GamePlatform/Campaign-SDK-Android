@@ -10,7 +10,6 @@ import com.adviser.campaign.constant.CampaignConst
 import com.adviser.campaign.model.CampaignInfo
 import com.adviser.campaign.model.CampaignInfoManager
 import com.adviser.campaign.webkit.listener.OnCustomJavascriptListener
-import kotlinx.android.synthetic.main.campaign_activity.*
 
 /**
  * Created by Kairos on 2017. 6. 8..
