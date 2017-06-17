@@ -9,34 +9,35 @@ import com.adviser.campaign.webkit.listener.OnCustomJavascriptListener
  */
 
 class CustomJavascriptInterface {
-    private var listener : OnCustomJavascriptListener? = null
+  private var listener: OnCustomJavascriptListener? = null
 
-    fun setOnCustomJavascriptListener(listener: OnCustomJavascriptListener) {
-        this.listener = listener
+  fun setOnCustomJavascriptListener(listener: OnCustomJavascriptListener) {
+    this.listener = listener
+  }
+
+  @JavascriptInterface
+  fun getImageURL() : String {
+    var url = ""
+    if (listener != null) {
+      url = listener!!.getImageURL()
     }
+    Log.d("clog/CustomJavascriptInterface", "getImageURL: $url")
+    return url
+  }
 
-    @JavascriptInterface
-    fun getURL() {
-        if(listener != null) {
-            listener!!.onGetURL()
-            Log.d("clog/CustomJavascriptInterface", "getURL")
-        }
-
+  @JavascriptInterface
+  fun checkDontWatchDay() {
+    if (listener != null) {
+      listener!!.checkDontWatchDay()
+      Log.d("clog/CustomJavascriptInterface", "checkDontWatchDay")
     }
+  }
 
-    @JavascriptInterface
-    fun checkDontWatchDay() {
-        if(listener != null) {
-            listener!!.checkDontWatchDay()
-            Log.d("clog/CustomJavascriptInterface", "checkDontWatchDay")
-        }
+  @JavascriptInterface
+  fun close() {
+    if (listener != null) {
+      listener!!.close()
+      Log.d("clog/CustomJavascriptInterface", "close")
     }
-
-    @JavascriptInterface
-    fun close() {
-        if(listener != null) {
-            listener!!.close()
-            Log.d("clog/CustomJavascriptInterface", "close")
-        }
-    }
+  }
 }

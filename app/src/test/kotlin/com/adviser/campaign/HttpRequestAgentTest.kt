@@ -10,10 +10,10 @@ import org.testng.annotations.Test
  */
 class HttpRequestAgentTest {
 
-    @Test
-    fun constructorTest() {
-        val hra: HttpRequestAgent = HttpRequestAgent(1)
-        assertEquals(hra.reqRootUrl, "http://211.253.28.194:30022/api/campaign/locations/")
-        assertEquals(hra.locationId, 1)
-    }
+  @Test
+  fun constructorTest() {
+    val hra: HttpRequestAgent = HttpRequestAgent(1)
+    assertEquals(hra.reqRootUrl, "http://211.253.28.194:30022/api/campaign/locations/")
+    assertEquals(hra.locationId, 1)
+  }
 }

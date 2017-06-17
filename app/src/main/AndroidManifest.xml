@@ -20,7 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.adviser.campaign.base.view.BaseActivity"></activity>
+        <activity
+            android:name="com.adviser.campaign.view.main.CampaignActivity"
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
