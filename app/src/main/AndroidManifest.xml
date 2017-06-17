@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.adviser.campaign.campaignsdk">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,13 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.adviser.campaign.MainActivity">
+        <activity
+            android:name="com.adviser.campaign.MainActivity"
+            android:configChanges="screenSize|orientation"> <!-- screen rotation ignore -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.adviser.campaign.view.main.CampaignActivity"
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar">
+        </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>
