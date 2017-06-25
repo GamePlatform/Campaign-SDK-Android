@@ -55,6 +55,6 @@ class HttpRequestAgent {
       }).join()
     }
     Log.d("clog/HttpRequestAgent", "GET/Request URL Done URL: " + url)
-    return result.toString()
+    return result
   }
 }
