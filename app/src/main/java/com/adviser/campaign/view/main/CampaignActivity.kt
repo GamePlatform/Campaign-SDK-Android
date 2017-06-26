@@ -45,7 +45,6 @@ class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
       fragmentManager.beginTransaction().add(dialog, getCampaignId())
       dialog.showDialog()
 
-      curView = dialog
       Log.d("clog/CampaignActivity", "onCreate/dialog: $dialog")
     }
   }
@@ -90,8 +89,6 @@ class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
   }
 
   override fun close() {
-    if (curView != null) {
-      curView!!.close()
-    }
+    fragmentManager.popBackStackImmediate()
   }
 }
