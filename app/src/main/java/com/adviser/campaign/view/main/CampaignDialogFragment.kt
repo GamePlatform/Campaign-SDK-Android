@@ -5,6 +5,8 @@ import android.app.Dialog
 import android.app.DialogFragment
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import com.adviser.campaign.campaignsdk.R
 import com.adviser.campaign.constant.CampaignConst
 import com.adviser.campaign.webkit.CampaignWebView
 import com.adviser.campaign.webkit.CustomJavascriptInterface
@@ -16,34 +18,43 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
   private var presenter: CampaignDialogContract.Presenter? = null
 
   override fun setPresenter(presenter: CampaignDialogContract.Presenter) {
-    Log.d("clog/CampaignDialogFragment", "setPresenter: $presenter")
+    Log.d("cl/DialogFragment", "setPresenter: $presenter")
     this.presenter = presenter
   }
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    Log.d("clog/CampaignDialogFragment", "onCreateDialog Start")
+    Log.d("cl/DialogFragment", "onCreateDialog/Start")
     val url: String = presenter!!.getCampaignImageURL() //TODO PRIMARY
-    Log.d("clog/CampaignDialogFragment", "imageURL: $url")
+    Log.d("cl/DialogFragment", "imageURL: $url")
 
     val jsInterface = CustomJavascriptInterface()
     jsInterface.setOnCustomJavascriptListener(presenter!!.getCustomJavascriptListener())
 
-    val cwv = CampaignWebView(activity).init().setUrl(CampaignConst.POPUP_HTML_URL)
-    cwv.addJavascriptInterface(jsInterface, "campaign")
-    cwv.loadUrl("javascript:Document.findElementById(\"img_view\").src = $url")
+    val view = activity.layoutInflater.inflate(R.layout.dialog_theme_1, null)
+
+    val ca_web_view = view.findViewById(R.id.ca_web_view) as CampaignWebView
+    ca_web_view.init()
+    ca_web_view.setUrl(CampaignConst.POPUP_HTML_URL)
+    ca_web_view.addJavascriptInterface(jsInterface, "campaign")
+    ca_web_view.loadUrl("javascript:Document.findElementById(\"img_view\").src = $url")
+
+    val close_btn = view.findViewById(R.id.close)
+    close_btn.setOnClickListener{
+      this.dismiss()
+    }
 
     val builder = AlertDialog.Builder(activity)
-        .setView(cwv)
+        .setView(view)
         .setCancelable(false)
 
-    Log.d("clog/CampaignDialogFragment", "onCreateDialog Complete")
+    Log.d("clog/DialogFragment", "onCreateDialog Complete")
     return builder.create()
   }
 
   fun showDialog() {
     val id = presenter!!.getCampaignId()
-    Log.d("clog/CampaignDialogFragment", "showDialog: $id")
     this.show(fragmentManager, id)
+    Log.d("clog/DialogFragment", "showDialog: $id")
   }
 
   override fun setImageURL(imageURL: String) {
@@ -55,6 +66,9 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
   }
 
   override fun close() {
-    this.dismiss()
+    val id = presenter!!.getCampaignId()
+    Log.d("clog/DialogFragment", "close: $id")
+    val fr: CampaignDialogFragment = fragmentManager.getFragment(Bundle(), id) as CampaignDialogFragment
+    fr.close()
   }
 }
