@@ -13,6 +13,7 @@ import com.adviser.campaign.webkit.CustomJavascriptInterface
 /**
  * Created by Kairos on 2017. 6. 8..
  */
+//팝업 프레임 - 팝업 창 내부 이미지는 웹뷰로 구현
 class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
   private var presenter: CampaignDialogContract.Presenter? = null
 
