@@ -30,7 +30,7 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
     val jsInterface = CustomJavascriptInterface()
     jsInterface.setOnCustomJavascriptListener(presenter!!.getCustomJavascriptListener())
 
-    val view = activity.layoutInflater.inflate(R.layout.dialog_Complete, null)
+    val view = activity.layoutInflater.inflate(R.layout.dialog_complete, null)
 
     val ca_web_view = view.findViewById(R.id.ca_web_view) as CampaignWebView
     ca_web_view.init()
