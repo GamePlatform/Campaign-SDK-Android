@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.app.DialogFragment
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import com.adviser.campaign.campaignsdk.R
 import com.adviser.campaign.constant.CampaignConst
 import com.adviser.campaign.webkit.CampaignWebView
@@ -30,7 +29,7 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
     val jsInterface = CustomJavascriptInterface()
     jsInterface.setOnCustomJavascriptListener(presenter!!.getCustomJavascriptListener())
 
-    val view = activity.layoutInflater.inflate(R.layout.dialog_theme_1, null)
+    val view = activity.layoutInflater.inflate(R.layout.dialog_Complete, null)
 
     val ca_web_view = view.findViewById(R.id.ca_web_view) as CampaignWebView
     ca_web_view.init()
