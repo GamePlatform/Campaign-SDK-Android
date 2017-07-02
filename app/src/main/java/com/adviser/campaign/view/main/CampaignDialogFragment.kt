@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.app.DialogFragment
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import com.adviser.campaign.campaignsdk.R
 import com.adviser.campaign.constant.CampaignConst
 import com.adviser.campaign.webkit.CampaignWebView
@@ -34,7 +33,7 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
 
     val ca_web_view = view.findViewById(R.id.ca_web_view) as CampaignWebView
     ca_web_view.init()
-    ca_web_view.setUrl(CampaignConst.POPUP_HTML_URL)
+    ca_web_view.url=CampaignConst.POPUP_HTML_URL
     ca_web_view.addJavascriptInterface(jsInterface, "campaign")
     ca_web_view.loadUrl("javascript:Document.findElementById(\"img_view\").src = $url")
 
