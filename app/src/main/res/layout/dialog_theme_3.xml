@@ -4,6 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <CheckBox
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오늘은 그만보기" />
+
+    <com.adviser.campaign.webkit.CampaignWebView
+        android:id="@+id/ca_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ImageButton
         android:id="@+id/close"
         android:layout_width="30dp"
@@ -12,16 +23,4 @@
         android:padding="0dp"
         android:src="@drawable/x"
         android:scaleType="centerCrop"/>
-
-    <com.adviser.campaign.webkit.CampaignWebView
-        android:id="@+id/ca_web_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <CheckBox
-        android:id="@+id/check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="오늘은 그만보기"
-        />
 </LinearLayout>
