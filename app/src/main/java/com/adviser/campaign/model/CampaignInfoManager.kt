@@ -5,6 +5,7 @@ import android.util.Log
 /**
  * Created by Kairos on 2017. 6. 11..
  */
+//데이터 계산 및 처리
 class CampaignInfoManager {
 
   private var agent = HttpRequestAgent()
