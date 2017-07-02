@@ -14,6 +14,7 @@ import com.adviser.campaign.webkit.listener.OnCustomJavascriptListener
 /**
  * Created by Kairos on 2017. 6. 8..
  */
+//투명 액티비티( 팝업창 주변에 있는 것 ), Presenter
 class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
 
   private val infoManager = CampaignInfoManager()
