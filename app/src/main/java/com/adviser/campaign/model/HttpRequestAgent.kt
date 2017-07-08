@@ -15,13 +15,13 @@ import kotlin.concurrent.thread
 class HttpRequestAgent {
 
   private val reqRootUrl = CampaignConst.ServerURL
-  private val resendCount = 0
+  private var resendCount = 0
   private val resendThreshold = CampaignConst.RESEND_THRESHOLD
 
   fun getCampaignList(locationId: String): ArrayList<CampaignInfo> {
 
     val campaigns = arrayListOf<CampaignInfo>()
-    if (resendCount < resendThreshold) {
+    while (resendCount < resendThreshold) {
       try {
         val images: JSONArray = JSONObject(GET(reqRootUrl + locationId)).getJSONArray("images")
 
@@ -38,11 +38,14 @@ class HttpRequestAgent {
         e.printStackTrace()
         Log.d("cl/HttpRequestAgent", "reqParser/loadURLS Resend req")
       }
+      finally {
+        resendCount++
+      }
     }
 
     // get Campaign List fail
     // TODO #43
-    if (campaigns.size < 0) {
+    if (campaigns.size <= 0) {
       val ci1 = CampaignInfo("1", "https://cdn.pixabay.com/photo/2016/04/13/21/32/lamb-1327753_960_720.jpg")
       val ci2 = CampaignInfo("2", "http://livedoor.blogimg.jp/daynew/imgs/1/4/14ed705b.jpg")
       campaigns.add(ci1)
