@@ -46,7 +46,7 @@ class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
       fragmentManager.beginTransaction().add(dialog, getCampaignId())
       dialog.showDialog()
 
-      Log.d("clog/CampaignActivity", "onCreate/dialog: $dialog")
+      Log.d("cl/CampaignActivity", "onCreate/dialog: $dialog")
     }
   }
 
