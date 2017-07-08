@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.webkit.WebView
 import com.adviser.campaign.campaignsdk.R
 import com.adviser.campaign.view.main.CampaignActivity
+import com.adviser.campaign.view.main.CampaignAdviser
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,11 +19,9 @@ class MainActivity : AppCompatActivity() {
       WebView.setWebContentsDebuggingEnabled(true)
     }
 
-    //var ca: CampaignAdviser = CampaignAdviser()
-//        ca.loadCampaign(1)
-//        ca.showCampaignAllInOnce()
-    //ca.showCampaign(1)
+    val ca = CampaignAdviser()
+    ca.setAppId("myApp")
+    ca.loadCampaign(this, "1")
 
-    CampaignActivity.startActivity(this, "1")
   }
 }
