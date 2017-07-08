@@ -81,6 +81,13 @@ class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
     return ""
   }
 
+  override fun getTemplateNum(): Int {
+    if(currentCampaignInfo != null){
+      return currentCampaignInfo!!.temp_num
+    }
+    return 0
+  }
+
   // OnCustomJavascriptListener
   override fun getImageURL(): String {
     return getCampaignImageURL()
