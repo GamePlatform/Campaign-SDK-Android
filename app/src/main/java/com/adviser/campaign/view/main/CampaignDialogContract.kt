@@ -16,6 +16,7 @@ interface CampaignDialogContract {
     fun close()
   }
 
+
   interface Presenter : BasePresenter, OnCustomJavascriptListener {
     fun changeView(view: View)
 
@@ -24,5 +25,6 @@ interface CampaignDialogContract {
     fun loadNextCampaign()
     fun getCampaignImageURL(): String
     fun getCampaignId(): String
+    fun getTemplateNum(): Int
   }
 }
