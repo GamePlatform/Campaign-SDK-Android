@@ -9,5 +9,6 @@ class CampaignConst {
     val ServerURL = "http://211.253.28.194:30022/api/campaign/locations/"
     val LOCATION_ID_INTENT_KEY = "LOCATION_ID"
     val POPUP_HTML_URL = "file:///android_asset/popup.html"
+    val RESEND_THRESHOLD = 1
   }
 }
