@@ -1,5 +1,7 @@
 package com.adviser.campaign.view.main
 
+import android.content.Context
+
 /**
  * Created by Kairos on 2017. 5. 25..
  */
@@ -7,48 +9,15 @@ package com.adviser.campaign.view.main
 // Campaign Adviser
 class CampaignAdviser {
 
-//    fun showCampaignAllInOnce() {
-  // dialog setting
-//        for (i in 0..campaigns!!.getMax() - 1) {
-//            val alert = AlertDialog.Builder(context).create()
-//
-//            // popup(webview) setting
-//            val popup = WebView(context)
-//            popup.settings.javaScriptEnabled = true
-//            //popup.addJavascriptInterface(CustomJavascriptInterface(campaigns!!, alert), "campaign")
-//            //popup.loadUrl("file:///android_asset/popup.html")
-//            popup.loadUrl("https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg")
-//
-//            alert.setCurView(popup)
-//            alert.setCancelable(false)
-//            alert.window.setLayout(500,500)
-//            alert.show()
-//        }
-//    }
+  private val campaignActivity = CampaignActivity
+  private var appId = ""
 
-//    fun showSingleDialog(){
-//        var ad = AlertDialog.Builder(context).create()
-//        val pop : CampaignWebView = CampaignWebView(context).init()
-////        val pop = WebView(context)
-////        pop.loadUrl("file:///android_asset/popup.html")
-//
-//        ad.setCurView(pop)
-//        ad.show()
-//    }
-
-
-  fun showCampaignOneByOne() {
-    //TODO
+  fun setAppId(appId : String) {
+    this.appId = appId
   }
 
-  fun showCampaign(location: Int) {
-    CampaignDialogFragment().showDialog()
+  fun loadCampaign(context: Context, locationId: String) {
+    campaignActivity.startActivity(context = context, locationId = locationId)
   }
 
-  // Load all Campaign in locationId
-//    fun loadCampaign(locationId: Int) {
-//        val agent: HttpRequestAgent = HttpRequestAgent(locationId)
-//        val campaigns = agent.reqParser()
-//        this.campaigns = campaigns
-//    }
 }
