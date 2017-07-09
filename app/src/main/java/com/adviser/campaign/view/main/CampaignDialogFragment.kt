@@ -56,14 +56,14 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
         .setView(view)
         .setCancelable(false)
 
-    Log.d("clog/DialogFragment", "onCreateDialog Complete")
+    Log.d("cl/DialogFragment", "onCreateDialog Complete")
     return builder.create()
   }
 
   fun showDialog() {
     val id = presenter!!.getCampaignId()
     this.show(fragmentManager, id)
-    Log.d("clog/DialogFragment", "showDialog: $id")
+    Log.d("cl/DialogFragment", "showDialog: $id")
   }
 
   override fun setImageURL(imageURL: String) {
@@ -76,7 +76,7 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
 
   override fun close() {
     val id = presenter!!.getCampaignId()
-    Log.d("clog/DialogFragment", "close: $id")
+    Log.d("cl/DialogFragment", "close: $id")
     val fr: CampaignDialogFragment = fragmentManager.getFragment(Bundle(), id) as CampaignDialogFragment
     fr.close()
   }
