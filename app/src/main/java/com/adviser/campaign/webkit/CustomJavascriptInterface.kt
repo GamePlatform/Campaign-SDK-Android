@@ -21,7 +21,7 @@ class CustomJavascriptInterface {
     if (listener != null) {
       url = listener!!.getImageURL()
     }
-    Log.d("clog/CustomJavascriptInterface", "getImageURL: $url")
+    Log.d("cl/CustomJavascriptInterface", "getImageURL: $url")
     return url
   }
 
@@ -29,7 +29,7 @@ class CustomJavascriptInterface {
   fun checkDontWatchDay() {
     if (listener != null) {
       listener!!.checkDontWatchDay()
-      Log.d("clog/CustomJavascriptInterface", "checkDontWatchDay")
+      Log.d("cl/CustomJavascriptInterface", "checkDontWatchDay")
     }
   }
 
@@ -37,7 +37,7 @@ class CustomJavascriptInterface {
   fun close() {
     if (listener != null) {
       listener!!.close()
-      Log.d("clog/CustomJavascriptInterface", "close")
+      Log.d("cl/CustomJavascriptInterface", "close")
     }
   }
 }
