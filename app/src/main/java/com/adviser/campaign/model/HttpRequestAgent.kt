@@ -15,26 +15,37 @@ import kotlin.concurrent.thread
 class HttpRequestAgent {
 
   private val reqRootUrl = CampaignConst.ServerURL
+  private var resendCount = 0
+  private val resendThreshold = CampaignConst.RESEND_THRESHOLD
 
   fun getCampaignList(locationId: String): ArrayList<CampaignInfo> {
 
     val campaigns = arrayListOf<CampaignInfo>()
-    try {
-      val images: JSONArray = JSONObject(GET(reqRootUrl + locationId)).getJSONArray("images")
+    while (resendCount < resendThreshold) {
+      try {
+        val images: JSONArray = JSONObject(GET(reqRootUrl + locationId)).getJSONArray("images")
 
-      for (i in 0..images.length() - 1) {
-        val id = i                                // TODO get ID from response
-        val url = (images[i] as JSONObject).getString("url")
-        val ci = CampaignInfo(id.toString(), url) // TODO get ID from response
-        Log.v("cl/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
-        campaigns.add(ci)
-        Log.d("cl/HttpRequestAgent", "reqParser/loadURLs Complete")
+        for (i in 0..images.length() - 1) {
+          val id = i                                // TODO get ID from response
+          val url = (images[i] as JSONObject).getString("url")
+          val ci = CampaignInfo(id.toString(), url) // TODO get ID from response
+          Log.v("cl/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
+          campaigns.add(ci)
+          Log.d("cl/HttpRequestAgent", "reqParser/loadURLs Complete")
+        }
+      }
+      catch (e: Exception) {
+        e.printStackTrace()
+        Log.d("cl/HttpRequestAgent", "reqParser/loadURLS Resend req")
+      }
+      finally {
+        resendCount++
       }
     }
-    catch (e: Exception) {
-      // TODO change error
-      e.printStackTrace()
 
+    // get Campaign List fail
+    // TODO #43
+    if (campaigns.size <= 0) {
       val ci1 = CampaignInfo("1", "https://cdn.pixabay.com/photo/2016/04/13/21/32/lamb-1327753_960_720.jpg")
       val ci2 = CampaignInfo("2", "http://livedoor.blogimg.jp/daynew/imgs/1/4/14ed705b.jpg")
       campaigns.add(ci1)
