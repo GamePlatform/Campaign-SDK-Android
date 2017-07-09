@@ -25,7 +25,7 @@ class HttpRequestAgent {
       for (i in 0..images.length() - 1) {
         val id = i                                // TODO get ID from response
         val url = (images[i] as JSONObject).getString("url")
-        val temp_num = (images[i] as JSONObject).getInt("temp_num")
+        val temp_num = (images[i] as JSONObject).getInt("template_num")
         val ci = CampaignInfo(id.toString(), url,temp_num) // TODO get ID from response
         Log.v("cl/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
         campaigns.add(ci)
