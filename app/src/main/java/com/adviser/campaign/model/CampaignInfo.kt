@@ -7,12 +7,12 @@ package com.adviser.campaign.model
 class CampaignInfo {
   val id: String
   val url: String // 이미지 url
-  val temp_num: Int //템플릿 변수
+  val template_num: Int //템플릿 변수
 
-  constructor(id: String, url: String, temp_num: Int) {
+  constructor(id: String, url: String, template_num: Int) {
     this.id = id
     this.url = url
-    this.temp_num = temp_num
+    this.template_num = template_num
   }
 
   override fun equals(other: Any?): Boolean {
@@ -23,7 +23,7 @@ class CampaignInfo {
 
     if (id != other.id) return false
     if (url != other.url) return false
-    if (temp_num != other.temp_num) return false
+    if (template_num != other.template_num) return false
 
     return true
   }
@@ -35,6 +35,6 @@ class CampaignInfo {
   }
 
   override fun toString(): String {
-    return "CampaignInfo(id='$id', url='$url', temp_num='$temp_num')"
+    return "CampaignInfo(id='$id', url='$url', temp_num='$template_num')"
   }
 }

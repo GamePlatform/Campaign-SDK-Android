@@ -83,7 +83,7 @@ class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
 
   override fun getTemplateNum(): Int {
     if(currentCampaignInfo != null){
-      return currentCampaignInfo!!.temp_num
+      return currentCampaignInfo!!.template_num
     }
     return 0
   }
