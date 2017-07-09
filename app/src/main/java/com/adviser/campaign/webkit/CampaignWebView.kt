@@ -26,7 +26,7 @@ class CampaignWebView : WebView {
 
     settings.cacheMode = WebSettings.LOAD_NO_CACHE
 
-    Log.d("clog/CAView", "init done")
+    Log.d("cl/CAView", "init done")
 
     return this
   }
