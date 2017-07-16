@@ -17,10 +17,11 @@ import com.adviser.campaign.webkit.listener.OnCustomJavascriptListener
 //투명 액티비티( 팝업창 주변에 있는 것 ), Presenter
 class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
 
-  private val infoManager = CampaignInfoManager()
-  private var currentCampaignInfo: CampaignInfo? = null
-  private var curView: CampaignDialogContract.View? = null
+  val infoManager = CampaignInfoManager()
+  var currentCampaignInfo: CampaignInfo? = null
+  var curView: CampaignDialogContract.View? = null
 
+  // start Activity using Bundle
   companion object{
     fun startActivity(context: Context, locationId: String){
       val extras = Bundle()
@@ -32,17 +33,23 @@ class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
     }
   }
 
+  // onCreate
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.campaign_activity)
 
+    // load selected location's campaign
     infoManager.loadCampaign(intent.extras.getString(CampaignConst.LOCATION_ID_INTENT_KEY))
 
+    // add campaign dialog
     for (idx in 1..infoManager.getCampaignCount()) {
       loadNextCampaign()
 
+      // create new dialog fragment
       val dialog = CampaignDialogFragment()
       dialog.setPresenter(this)
+
+      // add dialog to fragment manager with campaign id
       fragmentManager.beginTransaction().add(dialog, getCampaignId())
       dialog.showDialog()
 
