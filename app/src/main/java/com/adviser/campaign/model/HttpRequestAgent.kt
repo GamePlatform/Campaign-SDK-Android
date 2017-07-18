@@ -26,9 +26,13 @@ class HttpRequestAgent {
         val images: JSONArray = JSONObject(GET(reqRootUrl + locationId)).getJSONArray("images")
 
         for (i in 0..images.length() - 1) {
-          val id = i                                // TODO get ID from response
+          val id = (images[i] as JSONObject).getString("id")
+          val order = (images[i] as JSONObject).getInt("order")
+          val title = (images[i] as JSONObject).getString("title")
           val url = (images[i] as JSONObject).getString("url")
-          val ci = CampaignInfo(id.toString(), url) // TODO get ID from response
+          val adExpireDay = (images[i] as JSONObject).getInt("ad_expire_day")
+          val templateNum = (images[i] as JSONObject).getInt("template_num")
+          val ci = CampaignInfo(id, order, title, url, adExpireDay, templateNum) // TODO get ID from response
           Log.v("cl/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
           campaigns.add(ci)
           Log.d("cl/HttpRequestAgent", "reqParser/loadURLs Complete")
@@ -44,10 +48,9 @@ class HttpRequestAgent {
     }
 
     // get Campaign List fail
-    // TODO #43
     if (campaigns.size <= 0) {
-      val ci1 = CampaignInfo("1", "https://cdn.pixabay.com/photo/2016/04/13/21/32/lamb-1327753_960_720.jpg")
-      val ci2 = CampaignInfo("2", "http://livedoor.blogimg.jp/daynew/imgs/1/4/14ed705b.jpg")
+      val ci1 = CampaignInfo("1", 1, "1", "https://cdn.pixabay.com/photo/2016/04/13/21/32/lamb-1327753_960_720.jpg", 1, 1)
+      val ci2 = CampaignInfo("2", 2, "2", "http://livedoor.blogimg.jp/daynew/imgs/1/4/14ed705b.jpg", 1, 2)
       campaigns.add(ci1)
       campaigns.add(ci2)
       Log.d("cl/HttpRequestAgent", "reqParser/loadURLs loadFail")
