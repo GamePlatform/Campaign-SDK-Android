@@ -27,11 +27,15 @@ class CampaignInfoManager {
   }
 
   fun getCampaign(idx: Int): CampaignInfo {
-    return list[idx]
+    val campaign = list[idx]
+    Log.d("cl/CampaignInfoManager", "getCampaign/idx: $idx, campaign: $campaign")
+    return campaign
   }
 
   fun getCampaignCount(): Int {
-    return list.size
+    val size = list.size
+    Log.d("cl/CampaignInfoManager", "getCampaignCount/next: $size")
+    return size
   }
 
 }
