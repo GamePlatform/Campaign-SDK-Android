@@ -12,15 +12,15 @@ class CampaignInfo {
   val title: String
   val url: String // 이미지 url
   val adExpireDay: Int
-  val templateNum: Int //템플릿 변수
+  val template: Int //템플릿 변수
 
-  constructor(id: String, order:Int, title: String, url: String, adExpireDay: Int, template_num: Int) {
+  constructor(id: String, order:Int, title: String, url: String, adExpireDay: Int, template: Int) {
     this.id = id
     this.order = order
     this.title = title
     this.url = url
     this.adExpireDay = adExpireDay
-    this.templateNum = template_num
+    this.template = template
   }
 
   override fun equals(other: Any?): Boolean {
@@ -34,7 +34,7 @@ class CampaignInfo {
     if (title != other.title) return false
     if (url != other.url) return false
     if (adExpireDay != other.adExpireDay) return false
-    if (templateNum != other.templateNum) return false
+    if (template != other.template) return false
 
     return true
   }
@@ -45,12 +45,12 @@ class CampaignInfo {
     result = 31 * result + title.hashCode()
     result = 31 * result + url.hashCode()
     result = 31 * result + adExpireDay
-    result = 31 * result + templateNum
+    result = 31 * result + template
     return result
   }
 
   override fun toString(): String {
-    return "CampaignInfo(id='$id', order=$order, title='$title', url='$url', adExpireDay=$adExpireDay, templateNum=$templateNum)"
+    return "CampaignInfo(id='$id', order=$order, title='$title', url='$url', adExpireDay=$adExpireDay, template=$template)"
   }
 
 
