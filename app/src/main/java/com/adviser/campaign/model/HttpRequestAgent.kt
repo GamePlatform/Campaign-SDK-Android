@@ -13,29 +13,41 @@ import kotlin.concurrent.thread
  */
 // TODO Change Singletone and Static
 class HttpRequestAgent {
-
-  private val reqRootUrl = CampaignConst.ServerURL
+  private val AppId ="1"
+  private val reqRootUrl = CampaignConst.ServerURL+"apps/$AppId/locations/"
   private var resendCount = 0
   private val resendThreshold = CampaignConst.RESEND_THRESHOLD
 
-  fun getCampaignList(locationId: String): ArrayList<CampaignInfo> {
+  fun getCampaignList(locationId: String, expiredCampaigns: List<ExpiredCampaignInfo>): ArrayList<CampaignInfo> {
 
     val campaigns = arrayListOf<CampaignInfo>()
     while (resendCount < resendThreshold) {
       try {
-        val images: JSONArray = JSONObject(GET(reqRootUrl + locationId)).getJSONArray("images")
 
-        for (i in 0..images.length() - 1) {
-          val id = (images[i] as JSONObject).getString("id")
-          val order = (images[i] as JSONObject).getInt("order")
-          val title = (images[i] as JSONObject).getString("title")
-          val url = (images[i] as JSONObject).getString("url")
-          val adExpireDay = (images[i] as JSONObject).getInt("ad_expire_day")
-          val templateNum = (images[i] as JSONObject).getInt("template_num")
-          val ci = CampaignInfo(id, order, title, url, adExpireDay, templateNum) // TODO get ID from response
-          Log.v("cl/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
-          campaigns.add(ci)
-          Log.d("cl/HttpRequestAgent", "reqParser/loadURLs Complete")
+        var reqURL: String = "$reqRootUrl$locationId/campaigns?ec="
+        expiredCampaigns?.forEach { reqURL += "${it.campaignId}&ec=" }
+
+
+        val responseJson = GET(reqURL)
+
+        if(!responseJson.isNullOrEmpty()) {
+          val count = JSONObject(responseJson).getInt("count")
+          val campaignArr = JSONObject(responseJson).getJSONArray("campaigns")
+
+          for (i in 0..campaignArr.length() - 1) {
+            val id = (campaignArr[i] as JSONObject).getString("campaign_id")
+            val order = (campaignArr[i] as JSONObject).getInt("campaign_order")
+            val url = (campaignArr[i] as JSONObject).getString("url")
+            val adExpireDay = (campaignArr[i] as JSONObject).getInt("ad_expire_day")
+            val expireTitle = (campaignArr[i] as JSONObject).getString("title")
+            val templateNum = (campaignArr[i] as JSONObject).getInt("template")
+
+            val ci = CampaignInfo(id, order, expireTitle, url, adExpireDay, templateNum)
+
+            Log.v("clog/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
+            campaigns.add(ci)
+            Log.d("cl/HttpRequestAgent", "reqParser/loadURLs Complete")
+          }
         }
       }
       catch (e: Exception) {

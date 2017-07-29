@@ -14,6 +14,7 @@ class CampaignAdviser {
 
   fun setAppId(appId : String) {
     this.appId = appId
+
   }
 
   fun loadCampaign(context: Context, locationId: String) {
