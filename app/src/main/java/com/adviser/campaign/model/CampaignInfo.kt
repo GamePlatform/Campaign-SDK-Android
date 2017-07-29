@@ -6,7 +6,7 @@ import org.json.JSONObject
  * Created by Kairos on 2017. 6. 1..
  */
 
-class CampaignInfo {
+class CampaignInfo: Comparable<CampaignInfo> {
   val id: String
   val order: Int
   val title: String
@@ -53,5 +53,6 @@ class CampaignInfo {
     return "CampaignInfo(id='$id', order=$order, title='$title', url='$url', adExpireDay=$adExpireDay, templateNum=$templateNum)"
   }
 
-
+  override fun compareTo(other: CampaignInfo): Int
+    = compareValuesBy(this, other, { it. order })
 }
