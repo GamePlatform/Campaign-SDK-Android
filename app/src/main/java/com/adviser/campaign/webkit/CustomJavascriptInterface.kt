@@ -10,6 +10,11 @@ import com.adviser.campaign.webkit.listener.OnCustomJavascriptListener
 
 class CustomJavascriptInterface {
   private var listener: OnCustomJavascriptListener? = null
+  private var id: String
+
+  constructor(id: String) {
+    this.id = id
+  }
 
   fun setOnCustomJavascriptListener(listener: OnCustomJavascriptListener) {
     this.listener = listener
@@ -19,25 +24,35 @@ class CustomJavascriptInterface {
   fun getImageURL() : String {
     var url = ""
     if (listener != null) {
-      url = listener!!.getImageURL()
+      url = listener!!.getImageURL(id)
     }
-    Log.d("cl/CustomJavascriptInterface", "getImageURL: $url")
+    Log.d("cl/CustomJSInterface", "getImageURL: $url")
     return url
+  }
+
+  @JavascriptInterface
+  fun getTitle() : String {
+    var title = ""
+    if (listener != null) {
+      title = listener!!.getExpireTitle()
+    }
+    Log.d("clog/CustomJSInterface", "getTitle: $title")
+    return title
   }
 
   @JavascriptInterface
   fun checkDontWatchDay() {
     if (listener != null) {
-      listener!!.checkDontWatchDay()
-      Log.d("cl/CustomJavascriptInterface", "checkDontWatchDay")
+      listener!!.checkDontWatchDay(id)
+      Log.d("cl/CustomJSInterface", "checkDontWatchDay")
     }
   }
 
   @JavascriptInterface
   fun close() {
     if (listener != null) {
-      listener!!.close()
-      Log.d("cl/CustomJavascriptInterface", "close")
+      listener!!.close(id)
+      Log.d("cl/CustomJSInterface", "close")
     }
   }
 }
