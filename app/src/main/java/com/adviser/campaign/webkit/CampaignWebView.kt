@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.webkit.WebViewClient
 
 /**
  * Created by Kairos on 2017. 5. 30..
