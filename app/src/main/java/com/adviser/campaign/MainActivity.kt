@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     val ca = CampaignAdviser()
+    ca.getDeviceId(this)
     ca.setAppId("1")
     ca.loadCampaign(this, "main")
 
