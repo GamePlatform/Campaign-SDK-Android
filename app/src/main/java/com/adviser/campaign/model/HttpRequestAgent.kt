@@ -23,6 +23,21 @@ class HttpRequestAgent {
     val campaigns = arrayListOf<CampaignInfo>()
     while (resendCount < resendThreshold) {
       try {
+/*
+        val images: JSONArray = JSONObject(GET(reqRootUrl + locationId)).getJSONArray("images")
+
+        for (i in 0..images.length() - 1) {
+          val id = (images[i] as JSONObject).getString("id")
+          val order = (images[i] as JSONObject).getInt("order")
+          val title = (images[i] as JSONObject).getString("title")
+          val url = (images[i] as JSONObject).getString("url")
+          val adExpireDay = (images[i] as JSONObject).getInt("ad_expire_day")
+          val template = (images[i] as JSONObject).getInt("template")
+          val ci = CampaignInfo(id, order, title, url, adExpireDay, template) // TODO get ID from response
+          Log.v("cl/HttpRequestAgent", "reqParser/loadUrls Campaign: " + ci)
+          campaigns.add(ci)
+          Log.d("cl/HttpRequestAgent", "reqParser/loadURLs Complete")
+*/
 
         var reqURL: String = "$reqRootUrl$locationId/campaigns?ec="
         expiredCampaigns?.forEach { reqURL += "${it.campaignId}&ec=" }
