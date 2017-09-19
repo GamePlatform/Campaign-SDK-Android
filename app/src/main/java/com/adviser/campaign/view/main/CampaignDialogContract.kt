@@ -23,8 +23,12 @@ interface CampaignDialogContract {
     fun getCustomJavascriptListener(): OnCustomJavascriptListener
 
     fun loadNextCampaign()
-    fun getCampaignImageURL(): String
+    fun getCampaignImageURL(id: String): String
+    fun getCampaignTitle(id: String): String
     fun getCampaignId(): String
-    fun getTemplateNum(): Int
+    fun getTemplateNum(id: String): Int
+
+    fun addExpiredCampaign(id: String)
+    fun saveExpiredCampaigns(id: String)
   }
 }
