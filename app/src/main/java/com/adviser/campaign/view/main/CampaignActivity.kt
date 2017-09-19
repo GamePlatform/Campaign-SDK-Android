@@ -116,6 +116,7 @@ class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
     return ""
   }
 
+
   override fun addExpiredCampaign(id: String) {
 //    if(currentCampaignInfo != null) {
 //      val expirationDate = CalenderHelper.AddDate(currentCampaignInfo!!.adExpireDay)
@@ -140,7 +141,7 @@ class CampaignActivity : AppCompatActivity(), CampaignDialogContract.Presenter {
 //    }
     val campaign = infoManager!!.getCampaign(id)
     if(campaign != null)
-      return campaign.templateNum
+      return campaign.template
     return 0
   }
 
