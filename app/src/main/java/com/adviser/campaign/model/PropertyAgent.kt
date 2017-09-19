@@ -94,7 +94,7 @@ class PropertyAgent {
 
                 val expirationDate: Calendar =  CalenderHelper.Parse(expirationDateStr)
 
-                if(!expirationDate.before(Date())) {
+                if(expirationDate.after(Calendar.getInstance())) {
                     result.add(ExpiredCampaignInfo(camId, expirationDate))
                 }
             }
