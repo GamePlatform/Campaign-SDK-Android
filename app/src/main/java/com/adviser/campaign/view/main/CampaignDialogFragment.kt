@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.app.DialogFragment
 import android.os.Bundle
 import android.util.Log
+import android.widget.CheckBox
 import com.adviser.campaign.campaignsdk.R
 import com.adviser.campaign.constant.CampaignConst
 import com.adviser.campaign.webkit.CampaignWebView
@@ -24,12 +25,12 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     Log.d("cl/DialogFragment", "onCreateDialog/Start")
-    val url: String = presenter!!.getCampaignImageURL() //TODO PRIMARY
+    val url: String = presenter!!.getCampaignImageURL(this.tag) //TODO PRIMARY
     Log.d("cl/DialogFragment", "imageURL: $url")
 
-    val temp_num: Int = presenter!!.getTemplateNum()
+    val temp_num: Int = presenter!!.getTemplateNum(this.tag)
 
-    val jsInterface = CustomJavascriptInterface()
+    val jsInterface = CustomJavascriptInterface(this.tag)
     jsInterface.setOnCustomJavascriptListener(presenter!!.getCustomJavascriptListener())
 
     var view = activity.layoutInflater.inflate(R.layout.dialog_complete, null)
@@ -45,11 +46,22 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
     ca_web_view.init()
     ca_web_view.url=CampaignConst.POPUP_HTML_URL
     ca_web_view.addJavascriptInterface(jsInterface, "campaign")
-    ca_web_view.loadUrl("javascript:Document.findElementById(\"img_view\").src = $url")
+    ca_web_view.loadUrl("javascript:(function() { document.getElementById(\"img_view\").src = $url; })()");
+//    ca_web_view.loadUrl("javascript:var x = document.getElementById('img_view').src = $url")
+
+    val notShow = view.findViewById(R.id.check)
+    val notShow_cb: CheckBox?
+    if(notShow != null) notShow_cb = notShow as CheckBox
+    else                notShow_cb = null
+    notShow_cb?.text = presenter!!.getCampaignTitle(this.tag)
 
     val close_btn = view.findViewById(R.id.close)
     close_btn.setOnClickListener{
-      this.dismiss()
+      if(notShow_cb != null && notShow_cb?.isChecked) {
+        checkDontWatchDay()
+      }
+      close()
+//      this.dismiss()
     }
 
     val builder = AlertDialog.Builder(activity)
@@ -71,13 +83,15 @@ class CampaignDialogFragment : DialogFragment(), CampaignDialogContract.View {
   }
 
   override fun checkDontWatchDay() {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    presenter!!.checkDontWatchDay(this.tag)
   }
 
   override fun close() {
     val id = presenter!!.getCampaignId()
     Log.d("cl/DialogFragment", "close: $id")
-    val fr: CampaignDialogFragment = fragmentManager.getFragment(Bundle(), id) as CampaignDialogFragment
-    fr.close()
+//    val fr: CampaignDialogFragment = fragmentManager.getFragment(Bundle(), id) as CampaignDialogFragment
+//    fr.close()
+    presenter!!.close(this.tag)
+    this.dismiss()
   }
 }
