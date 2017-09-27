@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
@@ -56,4 +57,19 @@ dependencies {
 
 repositories {
     jcenter()
+}
+
+publish {
+    userOrg = 'dcom'
+    groupId = 'com.d.campaign'
+    artifactId = 'campaign-adviser'
+    publishVersion = '0.3'
+    desc = 'Campaign Adviser'
+    website = ''
+    issueTracker = "https://github.com/GamePlatform/Campaign-SDK-Android/issues"
+    repository = "https://github.com/GamePlatform/Campaign-SDK-Android.git"
+}
+
+tasks.withType(Javadoc).all {
+    enabled = false
 }

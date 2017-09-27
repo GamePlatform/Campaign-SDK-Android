@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.webkit.WebView
-import com.d.campaign.view.main.CampaignActivity
 import com.d.campaign.view.main.CampaignAdviser
 
 class MainActivity : AppCompatActivity() {
