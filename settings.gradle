@@ -1,1 +1,1 @@
-include ':app'
+include ':campaign-adviser', ':demo-app'
