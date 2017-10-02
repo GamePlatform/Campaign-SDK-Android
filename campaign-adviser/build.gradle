@@ -4,14 +4,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.novoda.bintray-release'
 
 publish {
-    userOrg = 'dcom'
-    groupId = 'com.d.campaign'
-    artifactId = 'campaign-adviser'
-    publishVersion = '0.3'
-    desc = 'Campaign Adviser'
-    website = ''
-    issueTracker = "https://github.com/GamePlatform/Campaign-SDK-Android/issues"
-    repository = "https://github.com/GamePlatform/Campaign-SDK-Android.git"
+    userOrg = 'dcom'                // repo user/organization 
+    groupId = 'com.d.campaign'      // group ID
+    artifactId = 'campaign-adviser' // artifact ID, don't use space  
+    publishVersion = '0.3'          // version
+    desc = 'Campaign Adviser'       // description
+    website = ''                    // website
+    issueTracker = "https://github.com/GamePlatform/Campaign-SDK-Android/issues"    // git issue tracker
+    repository = "https://github.com/GamePlatform/Campaign-SDK-Android.git"         // git repo
 }
 
 android {
