@@ -2,50 +2,26 @@
 
 <head>
     <meta charset="utf-8">
-    <style>
-        #wrapper {
-            position: absolute;
-            background-color: gray;
-            width: 98%;
-        }
-        #close_div {
-            float: left;
-            background-color: yellow;
-        }
-        #content {
-            background-color: red;
-        }
-
-        #content img {
-            width: 100%;
-        }
-
-        #checker {
-            float: right;
-            background-color: blue;
-        }
-        button {
-            height: 25px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="campaign.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="Campaign.js"></script>
 </head>
 
 <body>
-    <div id="wrapper">
-        <div id="content">
-            <img id="img_view" onclick="exec('redirect');">
-        </div>
-        <div id="close_div">
-            <button type="button" onclick="exec('close', document.getElementById('no_more_to_see').checked);">X</button>
-        </div>
-        <div id="checker">
-            <input type="checkbox" id="no_more_to_see">
-            <label id="title" for="no_more_to_see">오늘 하루 보지 않기</label>
-            <button type="button" onclick="exec('close', document.getElementById('no_more_to_see').checked);">확인</button>
-        </div>
+<div id="wrapper">
+    
+    <div id="content" style="height: 95%">
+        <img id="img_view" onclick="exec('redirect');">
     </div>
+    <div id="header" class="border left">
+        <button type="button" onclick="exec('close', document.getElementById('no_more_to_see').checked);">X</button>
+    </div>
+    <div id="footer" class="border right">
+        <input type="checkbox" id="no_more_to_see">
+        <span id="title" for="no_more_to_see">오늘 하루 보지 않기</span>
+        <button type="button" onclick="exec('close', document.getElementById('no_more_to_see').checked);">확인</button>
+    </div>
+</div>
 </body>
 
 </html>
